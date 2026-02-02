@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { getCoins, getTimeframes, getMarketData, getPrediction, getUserSettings, updateUserSettings } from './services/api';
+import { getCoins, getTimeframes, getMarketData, getPrediction, getUserSettings, updateUserSettings, getWsUrl, updateBaseUrl } from './services/api';
 import CoinSelector from './components/CoinSelector';
 import TimeframeSelector from './components/TimeframeSelector';
 import SignalCard from './components/SignalCard';
@@ -17,6 +17,8 @@ function App() {
         final: true,
         predicted_price: true
     });
+    const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+    const [tempUrl, setTempUrl] = useState(localStorage.getItem('MOLTBOT_API_URL') || '');
 
     // Fetch coins
     const { data: coins } = useQuery({
@@ -41,10 +43,7 @@ function App() {
 
     // WebSocket Connection for Live Updates
     useEffect(() => {
-        // Derive WebSocket URL from API_BASE_URL (handles localhost vs 127.0.0.1)
-        const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-        const wsBase = apiBase.replace('http://', 'ws://').replace('https://', 'wss://');
-        const wsUrl = `${wsBase}/ws/market`;
+        const wsUrl = getWsUrl();
         const socket = new WebSocket(wsUrl);
 
         socket.onopen = () => {
@@ -95,9 +94,17 @@ function App() {
                             <h1 className="text-4xl font-bold text-gradient mb-2">MoltBot</h1>
                             <p className="text-gray-400">Advanced Crypto Trading Platform</p>
                         </div>
-                        <div className="flex items-center gap-2">
-                            <div className="w-3 h-3 bg-success-500 rounded-full animate-pulse"></div>
-                            <span className="text-sm text-gray-400">Live</span>
+                        <div className="flex flex-col items-end gap-2">
+                            <button
+                                onClick={() => setIsSettingsOpen(true)}
+                                className="text-xs text-gray-400 hover:text-white transition-colors bg-white/5 px-2 py-1 rounded"
+                            >
+                                ⚙️ Connection Settings
+                            </button>
+                            <div className="flex items-center gap-2">
+                                <div className="w-3 h-3 bg-success-500 rounded-full animate-pulse"></div>
+                                <span className="text-sm text-gray-400">Live</span>
+                            </div>
                         </div>
                     </div>
 
@@ -186,6 +193,42 @@ function App() {
                     </p>
                 </div>
             </div>
+            {/* Connection Settings Modal */}
+            {isSettingsOpen && (
+                <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+                    <div className="glass-card max-w-md w-full p-8 relative">
+                        <h2 className="text-2xl font-bold mb-4">Backend Connection</h2>
+                        <p className="text-gray-400 text-sm mb-6">
+                            Enter your local PC's tunnel URL (e.g. from localtunnel or ngrok) to connect the dashboard to your AI engine.
+                        </p>
+                        <input
+                            type="text"
+                            className="w-full bg-white/5 border border-white/10 rounded-lg p-3 text-white mb-6"
+                            placeholder="https://your-tunnel.loca.lt"
+                            value={tempUrl}
+                            onChange={(e) => setTempUrl(e.target.value)}
+                        />
+                        <div className="flex gap-4">
+                            <button
+                                onClick={() => {
+                                    updateBaseUrl(tempUrl);
+                                    setIsSettingsOpen(false);
+                                    window.location.reload();
+                                }}
+                                className="flex-1 bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 rounded-lg transition-colors"
+                            >
+                                Connect & Save
+                            </button>
+                            <button
+                                onClick={() => setIsSettingsOpen(false)}
+                                className="flex-1 bg-white/5 hover:bg-white/10 text-white font-bold py-3 rounded-lg transition-colors"
+                            >
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

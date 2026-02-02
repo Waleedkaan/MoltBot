@@ -4,7 +4,14 @@
  */
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+// Initial values - can be overridden by localStorage
+const getInitialBaseUrl = () => {
+    const saved = localStorage.getItem('MOLTBOT_API_URL');
+    if (saved) return saved;
+    return import.meta.env.VITE_API_URL || 'http://localhost:8000';
+};
+
+let API_BASE_URL = getInitialBaseUrl();
 
 const api = axios.create({
     baseURL: API_BASE_URL,
@@ -12,6 +19,20 @@ const api = axios.create({
         'Content-Type': 'application/json',
     },
 });
+
+// Function to update base URL without page reload (for temporary or persistent changes)
+export const updateBaseUrl = (newUrl) => {
+    if (!newUrl) return;
+    API_BASE_URL = newUrl;
+    api.defaults.baseURL = newUrl;
+    localStorage.setItem('MOLTBOT_API_URL', newUrl);
+};
+
+// WebSocket URL helper
+export const getWsUrl = () => {
+    const baseUrl = API_BASE_URL.replace('http', 'ws');
+    return `${baseUrl}/ws/market`;
+};
 
 // ──────────────────────────────────────
 // CONFIG & COINS
