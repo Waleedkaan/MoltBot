@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
+// MoltBot Dashboard v1.0.1
 import { getCoins, getTimeframes, getMarketData, getPrediction, getUserSettings, updateUserSettings, getWsUrl, updateBaseUrl } from './services/api';
 import CoinSelector from './components/CoinSelector';
 import TimeframeSelector from './components/TimeframeSelector';
