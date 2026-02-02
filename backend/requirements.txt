@@ -1,0 +1,36 @@
+# FastAPI & Server
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+python-multipart==0.0.6
+websockets==12.0
+
+# Data Processing
+pandas==2.1.4
+numpy==1.26.3
+python-dateutil==2.8.2
+
+# Technical Analysis
+pandas-ta==0.3.14b0
+
+# Machine Learning
+scikit-learn==1.4.0
+xgboost==2.0.3
+
+# Exchange & Market Data
+ccxt==4.2.25
+yfinance==0.2.35
+requests==2.31.0
+
+# Database
+sqlalchemy==2.0.25
+
+# Sentiment Analysis
+textblob==0.17.1
+
+# Utilities
+python-dotenv==1.0.1
+pydantic==2.5.3
+pydantic-settings==2.1.0
+
+# Monitoring & Logging
+structlog==24.1.0

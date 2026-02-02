@@ -1,0 +1,88 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer base {
+  * {
+    @apply border-gray-700;
+  }
+  
+  body {
+    @apply bg-gradient-to-br from-dark-900 via-slate-900 to-dark-800 text-white font-sans antialiased;
+    min-height: 100vh;
+  }
+  
+  #root {
+    @apply min-h-screen;
+  }
+}
+
+@layer components {
+  /* Glassmorphism card */
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl;
+  }
+  
+  /* Button styles */
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-glow-blue transition-all duration-300 hover:scale-105;
+  }
+  
+  .btn-success {
+    @apply px-6 py-3 bg-gradient-to-r from-success-600 to-success-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-glow-green transition-all duration-300 hover:scale-105;
+  }
+  
+  .btn-danger {
+    @apply px-6 py-3 bg-gradient-to-r from-danger-600 to-danger-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-glow-red transition-all duration-300 hover:scale-105;
+  }
+  
+  /* Input styles */
+  .input-field {
+    @apply bg-white/5 border border-white/20 rounded-lg px-4 py-2 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all;
+  }
+  
+  /* Signal badge */
+  .signal-buy {
+    @apply bg-success-500/20 text-success-500 border border-success-500/50 px-4 py-2 rounded-full font-bold uppercase tracking-wide;
+  }
+  
+  .signal-sell {
+    @apply bg-danger-500/20 text-danger-500 border border-danger-500/50 px-4 py-2 rounded-full font-bold uppercase tracking-wide;
+  }
+  
+  .signal-neutral {
+    @apply bg-gray-500/20 text-gray-400 border border-gray-500/50 px-4 py-2 rounded-full font-bold uppercase tracking-wide;
+  }
+  
+  /* Progress bar */
+  .progress-bar {
+    @apply w-full bg-gray-700 rounded-full h-3 overflow-hidden;
+  }
+  
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-500;
+  }
+  
+  /* Scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-800 rounded;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-primary-600 rounded hover:bg-primary-500;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary-400 to-purple-500 bg-clip-text text-transparent;
+  }
+  
+  .glow-text {
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.8);
+  }
+}
