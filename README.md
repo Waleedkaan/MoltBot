@@ -1,6 +1,6 @@
 # TradeBot - Advanced Crypto Trading Platform
 
-MoltBot is a full-featured crypto trading prediction and optional auto-trade system with multi-strategy analysis, machine learning models, sentiment analysis, and real-time visualization.
+TradeBot is a full-featured crypto trading prediction and optional auto-trade system with multi-strategy analysis, machine learning models, sentiment analysis, and real-time visualization.
 
 ![MoltBot](https://img.shields.io/badge/Version-1.0.0-blue)
 ![Python](https://img.shields.io/badge/Python-3.9+-green)
@@ -9,9 +9,9 @@ MoltBot is a full-featured crypto trading prediction and optional auto-trade sys
 
 ---
 
-## ✨ Features
+ ✨ Features
 
-### 📊 **Multi-Strategy Analysis**
+ 📊 **Multi-Strategy Analysis**
 - **RSI Strategy**: Overbought/oversold detection
 - **EMA Crossover**: Golden/death cross signals  
 - **MACD**: Momentum-based signals
@@ -19,7 +19,7 @@ MoltBot is a full-featured crypto trading prediction and optional auto-trade sys
 - **Volume Spike**: Unusual volume + price direction
 - **Support/Resistance**: Dynamic S/R level detection
 
-### 🤖 **Machine Learning Models**
+ 🤖 **Machine Learning Models**
 - Logistic Regression
 - Random Forest
 - XGBoost
@@ -27,27 +27,27 @@ MoltBot is a full-featured crypto trading prediction and optional auto-trade sys
 - Walk-forward validation
 - Ensemble voting
 
-### 📰 **News & Sentiment Analysis**
+ 📰 **News & Sentiment Analysis**
 - CryptoPanic RSS feed integration
 - Fear & Greed Index
 - NLP sentiment scoring
 - Aggregated confidence
 
-### 🎯 **Smart Predictions**
+ 🎯 **Smart Predictions**
 - Weighted signal combination (Strategy 40%, ML 35%, News 25%)
 - Dynamic target price calculation using ATR
 - **BUY signal** → Predicted HIGH price
 - **SELL signal** → Predicted LOW price
 - Confidence-based threshold filtering
 
-### 💎 **Professional UI**
+ 💎 **Professional UI**
 - Real-time candlestick charts (Lightweight Charts)
 - Glassmorphism design with Tailwind CSS
 - Live signal cards with confidence bars
 - Interactive visibility toggles
 - Responsive mobile-first layout
 
-### 🔐 **User Control**
+ 🔐 **User Control**
 - **Prediction-only mode** (default) - No trades executed
 - **Auto-trade mode** (optional) - Requires API keys
 - Toggle individual strategies
@@ -56,9 +56,9 @@ MoltBot is a full-featured crypto trading prediction and optional auto-trade sys
 
 ---
 
-## 🛠️ Tech Stack
+ 🛠️ Tech Stack
 
-### Backend
+ Backend
 - **Framework**: FastAPI
 - **Data Sources**: Binance Public API, Yahoo Finance
 - **Indicators**: pandas-ta, TA-Lib
@@ -67,7 +67,7 @@ MoltBot is a full-featured crypto trading prediction and optional auto-trade sys
 - **Database**: SQLite
 - **Exchange**: CCXT (for auto-trade)
 
-### Frontend
+ Frontend
 - **Framework**: React 18 + Vite
 - **Styling**: Tailwind CSS
 - **Charts**: Lightweight Charts
@@ -76,20 +76,20 @@ MoltBot is a full-featured crypto trading prediction and optional auto-trade sys
 
 ---
 
-## 📦 Installation
+ 📦 Installation
 
 ### Prerequisites
 - **Python 3.9+**
 - **Node.js 18+**
 - **pip** and **npm**
 
-### 1. Clone Repository
+ 1. Clone Repository
 ```bash
 git clone <repository-url>
 cd "Trading Bot"
 ```
 
-### 2. Backend Setup
+ 2. Backend Setup
 
 ```bash
 cd backend
@@ -113,12 +113,12 @@ copy .env.example .env
 # For prediction-only mode, no API keys needed
 ```
 
-### 3. Initialize Database
+ 3. Initialize Database
 ```bash
 python -c "from models import init_db; init_db()"
 ```
 
-### 4. Frontend Setup
+ 4. Frontend Setup
 ```bash
 cd ../frontend
 
@@ -128,23 +128,23 @@ npm install
 
 ---
 
-## 🚀 Running the Application
+ 🚀 Running the Application
 
-### Start Backend (Terminal 1)
+ Start Backend (Terminal 1)
 ```bash
 cd backend
 python main.py
 ```
 Backend will run on `http://localhost:8000`
 
-### Start Frontend (Terminal 2)
+ Start Frontend (Terminal 2)
 ```bash
 cd frontend
 npm run dev
 ```
 Frontend will run on `http://localhost:3000`
 
-### Access Application
+ Access Application
 Open your browser and navigate to:
 ```
 http://localhost:3000
@@ -152,13 +152,13 @@ http://localhost:3000
 
 ---
 
-## 📚 API Documentation
+ 📚 API Documentation
 
 Once the backend is running, access the interactive API docs at:
 - **Swagger UI**: `http://localhost:8000/docs`
 - **ReDoc**: `http://localhost:8000/redoc`
 
-### Key Endpoints
+ Key Endpoints
 
 ```
 GET  /api/coins                 - List supported coins
@@ -172,9 +172,9 @@ POST /api/train-models          - Train ML models
 
 ---
 
-##  Configuration
+  Configuration
 
-### Environment Variables (`.env`)
+ Environment Variables (`.env`)
 
 ```env
 # Risk Management
@@ -196,47 +196,47 @@ BINANCE_API_KEY=
 BINANCE_API_SECRET=
 ```
 
-### Supported Coins (20 Major Cryptocurrencies)
+ Supported Coins (20 Major Cryptocurrencies)
 BTC, ETH, BNB, SOL, XRP, ADA, DOGE, AVAX, DOT, TRX, MATIC, LTC, LINK, UNI, ATOM, NEAR, ICP, FIL, APT, ARB
 
 ---
 
-## 🎓 How It Works
+ 🎓 How It Works
 
-### 1. Data Collection
+ 1. Data Collection
 - Real-time OHLCV from Binance Public API
 - Historical data for ML training (6 months)
 - News sentiment from CryptoPanic + Fear & Greed Index
 
-### 2. Strategy Analysis
+ 2. Strategy Analysis
 Each strategy analyzes price action and returns:
 - Signal: BUY / SELL / NEUTRAL
 - Confidence: 0-100%
 
-### 3. ML Prediction
+ 3. ML Prediction
 Trained models predict price direction:
 - Features: RSI, MACD, EMA, Volume, ATR, etc.
 - Output: BUY/SELL + confidence
 
-### 4. Signal Combination
+ 4. Signal Combination
 Weighted combination of all sources:
 ```
 Final Confidence = (Strategy × 40%) + (ML × 35%) + (News × 25%)
 ```
 
-### 5. Target Price Calculation
+ 5. Target Price Calculation
 ```
 If BUY:  Target = Current Price + (ATR × Confidence Factor)
 If SELL: Target = Current Price - (ATR × Confidence Factor)
 ```
 
-### 6. Decision
+ 6. Decision
 - **Confidence ≥ 60%**: Show signal + target price
 - **Confidence < 60%**: NO TRADE (low confidence)
 
 ---
 
-## 🧪 Training ML Models
+ 🧪 Training ML Models
 
 Before first use, train ML models for your desired coin/timeframe:
 
@@ -253,9 +253,9 @@ Models are saved in `backend/models/` directory.
 
 ---
 
-## ⚠️ Safety & Legal
+ ⚠️ Safety & Legal
 
-### ⚠️ **IMPORTANT DISCLAIMERS**
+ ⚠️ **IMPORTANT DISCLAIMERS**
 
 1. **No Guarantees**: Predictions are probability-based and not guaranteed
 2. **Risk Warning**: Crypto trading involves significant financial risk
@@ -263,12 +263,12 @@ Models are saved in `backend/models/` directory.
 4. **Never Over-invest**: Only invest what you can afford to lose
 5. **Not Financial Advice**: This is an educational/research tool
 
-### Default Mode: **Prediction Only**
+ Default Mode: **Prediction Only**
 - No trades are executed
 - No exchange API keys required
 - Safe for analysis and learning
 
-### Auto-Trade Mode (Optional)
+ Auto-Trade Mode (Optional)
 - Requires explicit user opt-in
 - Requires exchange API keys
 - Implements stop-loss and position sizing
@@ -276,7 +276,7 @@ Models are saved in `backend/models/` directory.
 
 ---
 
-## 🛡️ Security Best Practices
+ 🛡️ Security Best Practices
 
 1. **Never commit `.env` file** to version control
 2. **Use API keys with trading restrictions** (Binance: enable "Spot & Margin Trading" only, restrict IPs)
@@ -286,7 +286,7 @@ Models are saved in `backend/models/` directory.
 
 ---
 
-## 📁 Project Structure
+ 📁 Project Structure
 
 ```
 Trading Bot/
@@ -314,32 +314,32 @@ Trading Bot/
 
 ---
 
-## 🔧 Troubleshooting
+ 🔧 Troubleshooting
 
-### Backend Won't Start
+ Backend Won't Start
 - Check Python version: `python --version` (should be 3.9+)
 - Ensure all dependencies installed: `pip install -r requirements.txt`
 - Check port 8000 is not in use
 
-### Frontend Won't Start
+ Frontend Won't Start
 - Check Node version: `node --version` (should be 18+)
 - Clear node_modules: `rm -rf node_modules && npm install`
 - Check port 3000 is not in use
 
-### No Predictions Showing
+ No Predictions Showing
 - Ensure backend is running
 - Check browser console for errors
 - Verify API connection in Network tab
 - Try training models first
 
-### Chart Not Displaying
+ Chart Not Displaying
 - Check for JavaScript errors in console
 - Ensure market data is loading (Network tab)
 - Try different coin/timeframe
 
 ---
 
-## 🤝 Contributing
+ 🤝 Contributing
 
 Contributions are welcome! Please:
 1. Fork the repository
@@ -349,13 +349,12 @@ Contributions are welcome! Please:
 
 ---
 
-## 📜 License
+ 📜 License
 
 MIT License - See LICENSE file for details
 
 ---
-
-## 🙏 Acknowledgments
+ 🙏 Acknowledgments
 
 - **Binance** for free public API
 - **CryptoPanic** for news aggregation
@@ -365,7 +364,7 @@ MIT License - See LICENSE file for details
 
 ---
 
-## 📞 Support
+ 📞 Support
 
 For issues, questions, or feature requests:
 - Open an issue on GitHub
@@ -373,7 +372,7 @@ For issues, questions, or feature requests:
 
 ---
 
-## 🎯 Roadmap
+ 🎯 Roadmap
 
 - [ ] Add more ML models (Neural Networks, RNN)
 - [ ] Implement backtesting module
@@ -386,6 +385,6 @@ For issues, questions, or feature requests:
 
 ---
 
-**Happy Trading! 🚀📈**
+Happy Trading! 🚀📈**
 
 *Remember: Trade responsibly and never invest more than you can afford to lose.*
