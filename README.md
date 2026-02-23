@@ -1,4 +1,4 @@
-# 🚀 MoltBot - Advanced Crypto Trading Platform
+# TradeBot - Advanced Crypto Trading Platform
 
 MoltBot is a full-featured crypto trading prediction and optional auto-trade system with multi-strategy analysis, machine learning models, sentiment analysis, and real-time visualization.
 
